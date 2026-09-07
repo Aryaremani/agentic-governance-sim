@@ -1,0 +1,37 @@
+# Demo config — no GPU or Ollama required. Uses heuristic MockAgents instead of real
+# LLMs so anyone can clone this repo and see the full three-phase dynamic in seconds:
+# `python src/simulation/run_experiment.py --config configs/mock_demo.yaml --out results/mock_demo.csv --mock`
+temperature: 0.7
+
+agents:
+  - id: agent_1
+    model: mock
+    strategy: cooperative
+  - id: agent_2
+    model: mock
+    strategy: cooperative
+  - id: agent_3
+    model: mock
+    strategy: greedy
+  - id: agent_4
+    model: mock
+    strategy: greedy
+
+initial_stock: 120
+capacity: 200
+regrowth_rate: 0.35
+sustainability_threshold: 25
+max_catch_per_agent: 10
+sustainable_cap_per_agent: 2
+fine_multiplier: 2.0
+
+phases:
+  - name: no_enforcement
+    enforcement_active: false
+    n_rounds: 10
+  - name: enforcement_active
+    enforcement_active: true
+    n_rounds: 15
+  - name: enforcement_withdrawn
+    enforcement_active: false
+    n_rounds: 20

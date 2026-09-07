@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+results/*.csv
+results/*.png
+!results/.gitkeep
+!results/mock_demo.csv
+!results/mock_demo.png
+.DS_Store

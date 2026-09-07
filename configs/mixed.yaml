@@ -1,0 +1,32 @@
+# Mixed condition: agents run different local models. Same environment parameters
+# as configs/uniform.yaml so the two conditions are otherwise identical.
+temperature: 0.7
+
+agents:
+  - id: agent_1
+    model: qwen2.5:7b
+  - id: agent_2
+    model: qwen2.5:7b
+  - id: agent_3
+    model: llama3:8b
+  - id: agent_4
+    model: mistral:7b
+
+initial_stock: 120
+capacity: 200
+regrowth_rate: 0.35
+sustainability_threshold: 25
+max_catch_per_agent: 10
+sustainable_cap_per_agent: 2
+fine_multiplier: 2.0
+
+phases:
+  - name: no_enforcement
+    enforcement_active: false
+    n_rounds: 10
+  - name: enforcement_active
+    enforcement_active: true
+    n_rounds: 15
+  - name: enforcement_withdrawn
+    enforcement_active: false
+    n_rounds: 20
